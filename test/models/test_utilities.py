@@ -23,7 +23,7 @@ def test_apply_move_to_coordinates__should_advance_x_coord_by_minus_1_y_should_r
     assert new_x == 1
     assert new_y == 2
 
-def test_range_check__should_return_False_for_coord_outside_of_range():
+def test_range_check__should_return_False_for_x_coord_below_zero():
     temp_x = -1
     temp_y = 1
 
