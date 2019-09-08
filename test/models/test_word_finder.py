@@ -82,3 +82,15 @@ def test_find_possible_second_letter_coords__should_return_coord_when_match_foun
         (2,1),
         (1,1)
     ]
+
+def test_find_possible_second_letter_coords__should_not_return_coords_outside_of_puzzle_grid():
+
+    coord = (0, 0)
+
+    actual = find_possible_second_letter_coords(coord)
+
+    assert actual == [
+        (0,1),
+        (1,1),
+        (1,0)
+    ]
