@@ -1,5 +1,5 @@
 from src.models.word_finder.word_finder import search_row_for_y_coord, find_first_letter_coords, \
-    find_possible_second_letter_coords, search_surrounding_spaces_for_second_letter
+    find_possible_second_letter_coords, search_surrounding_spaces_for_second_letter, find_rest_of_word
 
 
 def test_search_row_for_y_coord__should_return_none_if_character_not_found():
@@ -150,3 +150,18 @@ def test_search_surrounding_spaces_for_second_letter__should_return_list_with_mu
         (0, 1),
         (1, 1)
     ]
+
+
+def test_find_rest_of_word__should_return_none_if_word_is_not_found():
+    grid = [
+        ["B", "I", "R", "R"],
+        ["A", "I", "I", "G"],
+        ["Y", "T", "X", "P"],
+    ]
+    matched_coord = (0, 1)
+    move_used = (0, 1)
+    word = "BIG"
+
+    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+
+    assert actual is None
