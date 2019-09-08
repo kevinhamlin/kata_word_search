@@ -38,3 +38,15 @@ def test_find_first_letter_coords__should_return_none_when_not_found():
     actual = find_first_letter_coords(character_to_find, grid)
 
     assert actual is None
+
+
+def test_find_first_letter_coords__should_return_coords_when_found():
+    rows = [
+        ["S", "B", "I", "G"],
+    ]
+
+    character_to_find = "B"
+
+    actual = find_first_letter_coords(character_to_find, rows)
+
+    assert actual == (0,1)
