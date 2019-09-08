@@ -50,3 +50,16 @@ def test_find_first_letter_coords__should_return_coords_when_found():
     actual = find_first_letter_coords(character_to_find, rows)
 
     assert actual == (0,1)
+
+
+def test_find_first_letter_coords__should_search_multiple_rows_and_return_coords_when_found():
+    rows = [
+        ["S", "B", "I", "G"],
+        ["A", "B", "C", "D"]
+    ]
+
+    character_to_find = "C"
+
+    actual = find_first_letter_coords(character_to_find, rows)
+
+    assert actual == (1,2)
