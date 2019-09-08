@@ -7,4 +7,5 @@ def test_search_row_for_y_coord__should_return_none_if_character_not_found():
 
     actual = search_row_for_y_coord(row, character)
 
-    assert actual == None
+    assert actual is None
+
