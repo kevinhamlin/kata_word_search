@@ -94,3 +94,4 @@ def test_find_possible_second_letter_coords__should_not_return_coords_outside_of
         (1,1),
         (1,0)
     ]
+
