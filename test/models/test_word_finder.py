@@ -210,3 +210,18 @@ def test_find_rest_of_word__should_return_coord_of_last_letter_when_found():
     actual = find_rest_of_word(matched_coord, move_used, word, grid)
 
     assert actual == [(2, 0)]
+
+
+def test_find_rest_of_word__should_stop_searching_when_entire_word_is_found():
+    grid = [
+        ["B", "I", "G", "D"],
+        ["I", "A", "I", "G"],
+        ["D", "T", "X", "P"],
+    ]
+    matched_coord = (0, 1)
+    move_used = (0, 1)
+    word = "BIG"
+
+    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+
+    assert actual == [(0, 2)]
