@@ -15,3 +15,9 @@ def test_file_reader__first_row_of_puzzle_grid_should_contain_the_correct_charac
     assert puzzle_grid[0] == ['S', 'G', 'C', 'W', 'J', 'J', 'C', 'D', 'B', 'C', 'R', 'J', 'P', 'T', 'W']
 
 
+def test_file_reader__second_row_of_puzzle_grid_should_contain_the_correct_characters():
+    words_to_find, puzzle_grid = file_reader()
+
+    assert len(puzzle_grid[1]) == 15
+    assert puzzle_grid[1] == ['H', 'E', 'M', 'G', 'D', 'I', 'D', 'P', 'N', 'F', 'Q', 'W', 'V', 'E', 'H']
+
