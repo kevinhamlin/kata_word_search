@@ -1,4 +1,5 @@
-from src.models.word_finder.word_finder import search_row_for_y_coord, find_first_letter_coords
+from src.models.word_finder.word_finder import search_row_for_y_coord, find_first_letter_coords, \
+    find_possible_second_letter_coords
 
 
 def test_search_row_for_y_coord__should_return_none_if_character_not_found():
@@ -63,3 +64,21 @@ def test_find_first_letter_coords__should_search_multiple_rows_and_return_coords
     actual = find_first_letter_coords(character_to_find, rows)
 
     assert actual == (1,2)
+
+
+def test_find_possible_second_letter_coords__should_return_coord_when_match_found():
+
+    coord = (1,2)
+
+    actual = find_possible_second_letter_coords(coord)
+
+    assert actual == [
+        (0,1),
+        (0,2),
+        (0,3),
+        (1,3),
+        (2,3),
+        (2,2),
+        (2,1),
+        (1,1)
+    ]
