@@ -180,3 +180,18 @@ def test_find_rest_of_word__should_return_none_if_third_letter_matches_but_fourt
     actual = find_rest_of_word(matched_coord, move_used, word, grid)
 
     assert actual is None
+
+
+def test_find_rest_of_word__should_return_none_if_search_goes_off_grid():
+    grid = [
+        ["R", "I", "B", "D"],
+        ["I", "A", "I", "G"],
+        ["Y", "T", "X", "P"],
+    ]
+    matched_coord = (0, 1)
+    move_used = (0, -1)
+    word = "BIRD"
+
+    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+
+    assert actual is None
