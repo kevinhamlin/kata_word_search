@@ -18,3 +18,11 @@ def test_search_row_for_y_coord__should_return_1_when_character_found():
 
     assert actual == 1
 
+
+def test_search_row_for_y_coord__should_return_2_when_character_found_with_case_mismatch():
+    row = ['S', 'A', 'B', 'C']
+    character = 'b'
+
+    actual = search_row_for_y_coord(row, character)
+
+    assert actual == 2
