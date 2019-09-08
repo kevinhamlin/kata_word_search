@@ -129,3 +129,24 @@ def test_search_surrounding_spaces_for_second_letter__should_return_list_with_on
     actual = search_surrounding_spaces_for_second_letter(letter, possible_coords, grid)
 
     assert actual == [(1, 1)]
+
+
+def test_search_surrounding_spaces_for_second_letter__should_return_list_with_multiple_coords_when_multiple_matches_found():
+    grid = [
+        ["B", "I", "R", "R"],
+        ["A", "I", "I", "G"],
+        ["Y", "T", "X", "P"],
+    ]
+    possible_coords = [
+        (0, 1),
+        (1, 1),
+        (1, 0)
+    ]
+    letter = "I"
+
+    actual = search_surrounding_spaces_for_second_letter(letter, possible_coords, grid)
+
+    assert actual == [
+        (0, 1),
+        (1, 1)
+    ]
