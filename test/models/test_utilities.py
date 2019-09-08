@@ -1,4 +1,5 @@
 from src.models.utilities.apply_move_to_coordinates import apply_move_to_coordinates
+from src.models.utilities.find_move_used import find_move_used
 from src.models.utilities.range_check import range_check
 
 
@@ -64,3 +65,11 @@ def test_range_check__should_return_True_for_valid_set_of_coordinates():
     actual = range_check(temp_x, temp_y)
 
     assert actual
+
+def test_find_move_used__should_return_1_0_when_given_coords():
+    first_letter_coords = (8, 13)
+    second_letter_coords = (9, 13)
+
+    actual = find_move_used(first_letter_coords, second_letter_coords)
+
+    assert actual == (1, 0)
