@@ -27,3 +27,12 @@ def find_possible_second_letter_coords(coords):
         if range_check(temp_x, temp_y):
             possible_moves.append((temp_x, temp_y))
     return possible_moves
+
+
+def search_surrounding_spaces_for_second_letter(letter, possible_coords, grid):
+    matches = []
+    for coords in possible_coords:
+        x, y = coords
+        if grid[x][y] == letter:
+            matches.append(coords)
+    return matches
