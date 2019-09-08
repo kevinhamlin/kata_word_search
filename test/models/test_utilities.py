@@ -1,4 +1,5 @@
 from src.models.utilities.apply_move_to_coordinates import apply_move_to_coordinates
+from src.models.utilities.range_check import range_check
 
 
 def test_apply_move_to_coordinates__should_advance_coordinates_by_1():
@@ -21,3 +22,11 @@ def test_apply_move_to_coordinates__should_advance_x_coord_by_minus_1_y_should_r
 
     assert new_x == 1
     assert new_y == 2
+
+def test_range_check__should_return_False_for_coord_outside_of_range():
+    temp_x = -1
+    temp_y = 1
+
+    actual = range_check(temp_x, temp_y)
+
+    assert not actual
