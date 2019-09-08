@@ -73,3 +73,12 @@ def test_find_move_used__should_return_1_0_when_given_coords():
     actual = find_move_used(first_letter_coords, second_letter_coords)
 
     assert actual == (1, 0)
+
+
+def test_find_move_used__should_return_minus_one_minus_one_when_given_coords():
+    first_letter_coords = (8, 13)
+    second_letter_coords = (7, 12)
+
+    actual = find_move_used(first_letter_coords, second_letter_coords)
+
+    assert actual == (-1, -1)
