@@ -1,5 +1,7 @@
 from src.models.utilities.moves_to_search_surrounding_characters import moves
 from src.models.utilities.apply_move_to_coordinates import apply_move_to_coordinates
+from src.models.utilities.range_check import range_check
+
 
 def search_row_for_y_coord(row, character):
     for y, unknown_character in enumerate(row):
@@ -22,5 +24,6 @@ def find_possible_second_letter_coords(coords):
     possible_moves = []
     for move in moves:
         temp_x, temp_y = apply_move_to_coordinates(x, y, move)
-        possible_moves.append((temp_x, temp_y))
+        if range_check(temp_x, temp_y):
+            possible_moves.append((temp_x, temp_y))
     return possible_moves
