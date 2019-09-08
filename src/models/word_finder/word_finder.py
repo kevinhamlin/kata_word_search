@@ -36,3 +36,26 @@ def search_surrounding_spaces_for_second_letter(letter, possible_coords, grid):
         if grid[x][y] == letter:
             matches.append(coords)
     return matches
+
+
+def find_rest_of_word(matched_coord, move_used, word, grid):
+    remaining_coords = []
+    letter_index = 2
+    match = True
+    while letter_index < len(word) and match:
+        temp_x, temp_y = matched_coord
+        x, y = apply_move_to_coordinates(temp_x, temp_y, move_used)
+        if range_check(x, y):
+            if grid[x][y] == word[letter_index]:
+                remaining_coords.append((x, y))
+                letter_index += 1
+            else:
+                match = False
+        else:
+            match = False
+    if match:
+        return remaining_coords
+    else:
+        return None
+
+
