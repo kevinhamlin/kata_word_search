@@ -38,3 +38,11 @@ def test_range_check__should_return_False_for_x_coord_above_fourteen():
     actual = range_check(temp_x, temp_y)
 
     assert not actual
+
+def test_range_check__should_return_False_for_y_coord_below_zero():
+    temp_x = 5
+    temp_y = -1
+
+    actual = range_check(temp_x, temp_y)
+
+    assert not actual
