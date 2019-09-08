@@ -195,3 +195,18 @@ def test_find_rest_of_word__should_return_none_if_search_goes_off_grid():
     actual = find_rest_of_word(matched_coord, move_used, word, grid)
 
     assert actual is None
+
+
+def test_find_rest_of_word__should_return_coord_of_last_letter_when_found():
+    grid = [
+        ["B", "I", "B", "D"],
+        ["I", "A", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+    matched_coord = (1, 0)
+    move_used = (1, 0)
+    word = "BIG"
+
+    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+
+    assert actual == [(2, 0)]
