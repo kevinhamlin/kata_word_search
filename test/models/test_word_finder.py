@@ -1,5 +1,5 @@
 from src.models.word_finder.word_finder import search_row_for_y_coord, find_first_letter_coords, \
-    find_possible_second_letter_coords
+    find_possible_second_letter_coords, search_surrounding_spaces_for_second_letter
 
 
 def test_search_row_for_y_coord__should_return_none_if_character_not_found():
@@ -95,3 +95,19 @@ def test_find_possible_second_letter_coords__should_not_return_coords_outside_of
         (1,0)
     ]
 
+def test_search_surrounding_spaces_for_second_letter__should_return_empty_list_if_no_matches_found():
+    grid = [
+        ["S", "U", "R", "R"],
+        ["A", "B", "I", "G"],
+        ["Y", "T", "X", "P"],
+    ]
+    possible_coords = [
+        (0, 1),
+        (1, 1),
+        (1, 0)
+    ]
+    letter = "I"
+
+    actual = search_surrounding_spaces_for_second_letter(letter, possible_coords, grid)
+
+    assert actual == []
