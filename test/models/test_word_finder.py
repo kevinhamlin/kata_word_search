@@ -1,4 +1,4 @@
-from src.models.word_finder.word_finder import search_row_for_y_coord
+from src.models.word_finder.word_finder import search_row_for_y_coord, find_first_letter_coords
 
 
 def test_search_row_for_y_coord__should_return_none_if_character_not_found():
@@ -26,3 +26,15 @@ def test_search_row_for_y_coord__should_return_2_when_character_found_with_case_
     actual = search_row_for_y_coord(row, character)
 
     assert actual == 2
+
+
+def test_find_first_letter_coords__should_return_none_when_not_found():
+    grid = [
+        ["S", "A", "I", "G"],
+    ]
+
+    character_to_find = "B"
+
+    actual = find_first_letter_coords(character_to_find, grid)
+
+    assert actual is None
