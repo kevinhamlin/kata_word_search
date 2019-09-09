@@ -290,3 +290,24 @@ def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_with_
         (3, 2),
         (4, 2)
     ]
+
+
+def test_search_surrounding_spaces_for_second_letter__should_return_list_with_coords_when_despite_case_mismatch():
+    grid = [
+        ["B", "I", "R", "R"],
+        ["A", "I", "I", "G"],
+        ["Y", "T", "X", "P"],
+    ]
+    possible_coords = [
+        (0, 1),
+        (1, 1),
+        (1, 0)
+    ]
+    letter = "i"
+
+    actual = search_surrounding_spaces_for_second_letter(letter, possible_coords, grid)
+
+    assert actual == [
+        (0, 1),
+        (1, 1)
+    ]
