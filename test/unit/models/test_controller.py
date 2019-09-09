@@ -1,6 +1,6 @@
 from mock import patch
 
-from src.models.controller.controller import begin_search
+from src.models.controller.controller import begin_search, find_second_letter_matches
 
 
 @patch('src.models.controller.controller.search_grid_for_all_instances_of_first_letter')
@@ -19,8 +19,7 @@ def test_begin_search__should_call_search_grid_for_instance_of_first_letter_once
 
 
 @patch('src.models.controller.controller.find_second_letter_matches')
-@patch('src.models.controller.controller.search_grid_for_all_instances_of_first_letter')
-def test_begin_search__should_call_search_grid_for_instance_of_first_letter_once(mock_validate, mock_matches):
+def test_begin_search__should_call_search_grid_for_instance_of_first_letter_once(mock_matches):
     words_to_find = ["Big"]
     puzzle_grid = [
         ["B", "I", "G", "D"],
@@ -31,3 +30,5 @@ def test_begin_search__should_call_search_grid_for_instance_of_first_letter_once
     begin_search(words_to_find, puzzle_grid)
 
     assert mock_matches.call_count == 1
+
+
