@@ -349,3 +349,15 @@ def test_search_grid_for_all_instances_of_first_letter__should_handle_case_misma
 
     actual = search_grid_for_all_instances_of_first_letter(grid, letter)
     assert actual == [(2, 2)]
+
+
+def test_search_grid_for_all_instances_of_first_letter__should_multiple_coords_when_multiple_matches_found():
+    grid = [
+        ["B", "I", "R", "R"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+    letter = "I"
+
+    actual = search_grid_for_all_instances_of_first_letter(grid, letter)
+    assert actual == [(0, 1), (1, 1), (1, 2)]
