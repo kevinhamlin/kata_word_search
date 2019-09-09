@@ -32,7 +32,7 @@ def search_surrounding_spaces_for_second_letter(letter, possible_coords, grid):
     matches = []
     for coords in possible_coords:
         x, y = coords
-        if grid[x][y] == letter:
+        if grid[x][y].lower() == letter.lower():
             matches.append(coords)
     return matches
 
