@@ -32,15 +32,14 @@ def search_surrounding_spaces_for_second_letter(letter, possible_coords, grid):
     return matches
 
 
-def find_rest_of_word(matched_coord, move_used, word, grid):
+def search_remaining_letters_in_a_line(matched_coord, move_used, word, grid):
     remaining_coords = []
     letter_index = 2
     match = True
     temp_x, temp_y = matched_coord
     while letter_index < len(word) and match:
         temp_x, temp_y = apply_move_to_coordinates(temp_x, temp_y, move_used)
-        letter_index, match = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y,
-                                                        word)
+        letter_index, match = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
     if match:
         return remaining_coords
     else:
