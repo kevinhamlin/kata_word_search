@@ -337,3 +337,5 @@ def test_search_grid_for_all_instances_of_first_letter__should_return_a_single_s
     actual = search_grid_for_all_instances_of_first_letter(grid, letter)
 
     assert actual == [(1, 3)]
+
+
