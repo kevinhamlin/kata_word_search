@@ -32,3 +32,17 @@ def test_begin_search__should_call_search_grid_for_instance_of_first_letter_once
     assert mock_matches.call_count == 1
 
 
+@patch('src.models.controller.controller.find_possible_second_letter_coords')
+def test_find_second_letter_matches__should_call_find_possible_second_letter_coords_once(mock_validate):
+    first_letter_coords = [(0, 0)]
+    word = "Big"
+    puzzle_grid = [
+        ["B", "I", "G", "D"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+
+    find_second_letter_matches(first_letter_coords, word, puzzle_grid)
+
+    assert mock_validate.call_count == 1
+    mock_validate.assert_called_with((0, 0))
