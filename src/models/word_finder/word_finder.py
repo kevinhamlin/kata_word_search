@@ -2,6 +2,16 @@ from src.models.utilities.moves_to_search_surrounding_characters import moves
 from src.models.utilities.apply_move_to_coordinates import apply_move_to_coordinates
 from src.models.utilities.range_check import range_check
 
+def search_grid_for_all_instances_of_first_letter(grid, letter):
+    first_letter_coords = []
+    for x, row in enumerate(grid):
+        for y, grid_character in enumerate(row):
+            if grid_character.lower() == letter.lower():
+                first_letter_coords.append((x, y))
+    if len(first_letter_coords) > 0:
+        return first_letter_coords
+    return None
+
 
 def search_row_for_y_coord(row, character):
     for y, unknown_character in enumerate(row):
