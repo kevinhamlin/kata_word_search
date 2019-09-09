@@ -324,3 +324,16 @@ def test_search_grid_for_all_instances_of_first_letter__should_return_None_if_no
     actual = search_grid_for_all_instances_of_first_letter(grid, letter)
 
     assert actual is None
+
+
+def test_search_grid_for_all_instances_of_first_letter__should_return_a_single_set_of_coords_when_one_match_found():
+    grid = [
+        ["B", "I", "R", "R"],
+        ["A", "I", "I", "G"],
+        ["Y", "T", "X", "P"],
+    ]
+    letter = "G"
+
+    actual = search_grid_for_all_instances_of_first_letter(grid, letter)
+
+    assert actual == [(1, 3)]
