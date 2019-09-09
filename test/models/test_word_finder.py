@@ -246,3 +246,25 @@ def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_longe
         (2, 2),
         (3, 2)
     ]
+
+
+def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_longer_than_four_characters():
+    grid = [
+        ["B", "I", "G", "D"],
+        ["I", "A", "I", "G"],
+        ["D", "T", "V", "P"],
+        ["D", "T", "E", "P"],
+        ["D", "T", "S", "P"],
+        ["D", "T", "X", "P"],
+    ]
+    matched_coord = (1, 2)
+    move_used = (1, 0)
+    word = "GIVES"
+
+    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+
+    assert actual == [
+        (2, 2),
+        (3, 2),
+        (4, 2)
+    ]
