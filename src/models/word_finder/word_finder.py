@@ -18,7 +18,6 @@ def find_first_letter_coords(character, grid):
             return x, result
 
 
-
 def find_possible_second_letter_coords(coords):
     x, y = coords
     possible_moves = []
@@ -42,12 +41,13 @@ def find_rest_of_word(matched_coord, move_used, word, grid):
     remaining_coords = []
     letter_index = 2
     match = True
+    temp_x, temp_y = matched_coord
     while letter_index < len(word) and match:
-        temp_x, temp_y = matched_coord
-        x, y = apply_move_to_coordinates(temp_x, temp_y, move_used)
-        if range_check(x, y):
-            if grid[x][y] == word[letter_index]:
-                remaining_coords.append((x, y))
+
+        temp_x, temp_y = apply_move_to_coordinates(temp_x, temp_y, move_used)
+        if range_check(temp_x, temp_y):
+            if grid[temp_x][temp_y] == word[letter_index]:
+                remaining_coords.append((temp_x, temp_y))
                 letter_index += 1
             else:
                 match = False
