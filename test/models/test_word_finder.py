@@ -1,5 +1,6 @@
-from src.models.word_finder.word_finder import find_possible_second_letter_coords, search_surrounding_spaces_for_second_letter, \
-    find_rest_of_word, search_grid_for_all_instances_of_first_letter
+from src.models.word_finder.word_finder import find_possible_second_letter_coords, \
+    search_surrounding_spaces_for_second_letter, \
+    search_remaining_letters_in_a_line, search_grid_for_all_instances_of_first_letter, compare_remaining_letters
 
 
 def test_find_possible_second_letter_coords__should_return_coord_when_match_found():
@@ -88,7 +89,7 @@ def test_search_surrounding_spaces_for_second_letter__should_return_list_with_mu
     ]
 
 
-def test_find_rest_of_word__should_return_none_if_word_is_not_found():
+def test_search_remaining_letters_in_a_line__should_return_none_if_word_is_not_found():
     grid = [
         ["B", "I", "R", "R"],
         ["A", "I", "I", "G"],
@@ -98,12 +99,12 @@ def test_find_rest_of_word__should_return_none_if_word_is_not_found():
     move_used = (0, 1)
     word = "BIG"
 
-    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+    actual = search_remaining_letters_in_a_line(matched_coord, move_used, word, grid)
 
     assert actual is None
 
 
-def test_find_rest_of_word__should_return_none_if_third_letter_matches_but_fourth_does_not():
+def test_search_remaining_letters_in_a_line__should_return_none_if_third_letter_matches_but_fourth_does_not():
     grid = [
         ["B", "I", "R", "X"],
         ["A", "I", "I", "G"],
@@ -113,12 +114,12 @@ def test_find_rest_of_word__should_return_none_if_third_letter_matches_but_fourt
     move_used = (0, 1)
     word = "BIRD"
 
-    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+    actual = search_remaining_letters_in_a_line(matched_coord, move_used, word, grid)
 
     assert actual is None
 
 
-def test_find_rest_of_word__should_return_none_if_search_goes_off_grid():
+def test_search_remaining_letters_in_a_line__should_return_none_if_search_goes_off_grid():
     grid = [
         ["R", "I", "B", "D"],
         ["I", "A", "I", "G"],
@@ -128,12 +129,12 @@ def test_find_rest_of_word__should_return_none_if_search_goes_off_grid():
     move_used = (0, -1)
     word = "BIRD"
 
-    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+    actual = search_remaining_letters_in_a_line(matched_coord, move_used, word, grid)
 
     assert actual is None
 
 
-def test_find_rest_of_word__should_return_coord_of_last_letter_when_found():
+def test_search_remaining_letters_in_a_line__should_return_coord_of_last_letter_when_found():
     grid = [
         ["B", "I", "B", "D"],
         ["I", "A", "I", "G"],
@@ -143,12 +144,12 @@ def test_find_rest_of_word__should_return_coord_of_last_letter_when_found():
     move_used = (1, 0)
     word = "BIG"
 
-    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+    actual = search_remaining_letters_in_a_line(matched_coord, move_used, word, grid)
 
     assert actual == [(2, 0)]
 
 
-def test_find_rest_of_word__should_stop_searching_when_entire_word_is_found():
+def test_search_remaining_letters_in_a_line__should_stop_searching_when_entire_word_is_found():
     grid = [
         ["B", "I", "G", "D"],
         ["I", "A", "I", "G"],
@@ -158,12 +159,12 @@ def test_find_rest_of_word__should_stop_searching_when_entire_word_is_found():
     move_used = (0, 1)
     word = "BIG"
 
-    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+    actual = search_remaining_letters_in_a_line(matched_coord, move_used, word, grid)
 
     assert actual == [(0, 2)]
 
 
-def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_longer_than_three_characters():
+def test_search_remaining_letters_in_a_line__should_stop_return_coords_of_letters_for_words_longer_than_three_characters():
     grid = [
         ["B", "I", "G", "D"],
         ["I", "A", "I", "G"],
@@ -176,7 +177,7 @@ def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_longe
     move_used = (1, 0)
     word = "GIVE"
 
-    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+    actual = search_remaining_letters_in_a_line(matched_coord, move_used, word, grid)
 
     assert actual == [
         (2, 2),
@@ -184,7 +185,7 @@ def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_longe
     ]
 
 
-def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_longer_than_four_characters():
+def test_search_remaining_letters_in_a_line__should_stop_return_coords_of_letters_for_words_longer_than_four_characters():
     grid = [
         ["B", "I", "G", "D"],
         ["I", "A", "I", "G"],
@@ -197,7 +198,7 @@ def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_longe
     move_used = (1, 0)
     word = "GIVES"
 
-    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+    actual = search_remaining_letters_in_a_line(matched_coord, move_used, word, grid)
 
     assert actual == [
         (2, 2),
@@ -206,7 +207,7 @@ def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_longe
     ]
 
 
-def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_with_case_mismatch():
+def test_search_remaining_letters_in_a_line__should_stop_return_coords_of_letters_for_words_with_case_mismatch():
     grid = [
         ["B", "I", "G", "D"],
         ["I", "A", "I", "G"],
@@ -219,7 +220,7 @@ def test_find_rest_of_word__should_stop_return_coords_of_letters_for_words_with_
     move_used = (1, 0)
     word = "gives"
 
-    actual = find_rest_of_word(matched_coord, move_used, word, grid)
+    actual = search_remaining_letters_in_a_line(matched_coord, move_used, word, grid)
 
     assert actual == [
         (2, 2),
@@ -286,7 +287,7 @@ def test_search_grid_for_all_instances_of_first_letter__should_handle_case_misma
     assert actual == [(2, 2)]
 
 
-def test_search_grid_for_all_instances_of_first_letter__should_multiple_coords_when_multiple_matches_found():
+def test_search_grid_for_all_instances_of_first_letter__should_return_multiple_coords_when_multiple_matches_found():
     grid = [
         ["B", "I", "R", "R"],
         ["A", "I", "I", "G"],
@@ -296,3 +297,26 @@ def test_search_grid_for_all_instances_of_first_letter__should_multiple_coords_w
 
     actual = search_grid_for_all_instances_of_first_letter(grid, letter)
     assert actual == [(0, 1), (1, 1), (1, 2)]
+
+
+def test_compare_remaining_letters__match_should_return_false_when_letters_do_not_match():
+    grid = [
+        ["B", "I", "P", "D"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+    letter_index = 2
+    match = True
+    remaining_coords = []
+    temp_x = 0
+    temp_y = 2
+    word = "BIRD"
+
+    letter_index, match = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
+
+
+    assert match is False
+    assert letter_index == 2
+
+
+
