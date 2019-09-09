@@ -169,7 +169,7 @@ def test_find_rest_of_word__should_return_none_if_word_is_not_found():
 
 def test_find_rest_of_word__should_return_none_if_third_letter_matches_but_fourth_does_not():
     grid = [
-        ["B", "I", "R", "D"],
+        ["B", "I", "R", "X"],
         ["A", "I", "I", "G"],
         ["Y", "T", "X", "P"],
     ]
