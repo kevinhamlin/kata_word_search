@@ -339,5 +339,22 @@ def test_compare_remaining_letters__match_should_return_true_when_letters_match(
     assert letter_index == 3
 
 
+def test_compare_remaining_letters__should_handle_case_mismatch_and_return_true_with_increased_letter_index():
+    grid = [
+        ["B", "I", "R", "D"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+    letter_index = 2
+    match = True
+    remaining_coords = []
+    temp_x = 0
+    temp_y = 2
+    word = "BIrD"
 
+    letter_index, match = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
+
+
+    assert match is True
+    assert letter_index == 3
 
