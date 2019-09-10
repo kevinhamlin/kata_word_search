@@ -58,8 +58,10 @@ def test_get_matched_second_letter_coords__should_call_search_surrounding_spaces
         ["A", "I", "I", "G"],
         ["G", "T", "X", "P"],
     ]
+    coord_to_check = (0, 0)
+    word = "BIG'"
 
-    get_matched_second_letter_coords(letter, possible_moves, puzzle_grid)
+    get_matched_second_letter_coords(letter, possible_moves, puzzle_grid, coord_to_check, word)
 
     assert mock_validate.call_count == 1
     mock_validate.assert_called_with(letter, possible_moves, puzzle_grid)
