@@ -1,7 +1,7 @@
 from mock import patch
 
 from src.models.controller.controller import begin_search, find_second_letter_matches, get_matched_second_letter_coords, \
-    get_move_used
+    get_move_used, check_if_path_matches_rest_of_word
 
 
 @patch('src.models.controller.controller.search_grid_for_all_instances_of_first_letter')
@@ -75,3 +75,18 @@ def test_get_move_used__should_call_find_move_used_twice(mock_validate):
     assert mock_validate.call_count == 2
 
 
+@patch('src.models.controller.controller.search_remaining_letters_in_a_line')
+def test_check_if_path_matches_rest_of_word(mock_validate):
+    puzzle_grid = [
+        ["B", "I", "G", "D"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+    match = (0, 1)
+    move_used = (0, 1)
+    word = "BIG"
+
+    check_if_path_matches_rest_of_word(match, move_used, word, puzzle_grid)
+
+    assert mock_validate.call_count == 1
+    mock_validate.assert_called_with(match, move_used, word, puzzle_grid)
