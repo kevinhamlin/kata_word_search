@@ -20,11 +20,10 @@ The program requires an input.txt file which adheres to the input requirements.
   - pip install -Ur test_requirements.txt
 - Pytest and Mock will be installed in the virtual environment.
 
-- Run the program with app.py
-
-## Running
-- After cloning the repository, navigate to the project's root directory and run app.py
+## Running and Testing
+- Navigate to the project's root directory and run app.py
   - Depending on your version of python: `python3 app.py` or `python app.py`
+- Run the tests: `python3 -m pytest -s ./test/unit` or `python -m pytest -s ./test/unit`
   
  ## Built With
  - [PyCharm](https://www.jetbrains.com/pycharm/) - IDE
