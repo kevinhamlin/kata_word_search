@@ -98,3 +98,18 @@ def test_create_list_of_found_word_coords__should_call_build_list_of_coords_once
 
     assert mock_validate.call_count == 1
     mock_validate.assert_called_with(coord_to_check, match, result)
+
+
+def test___find_second_letter_matches__should_return_None_when_word_not_found():
+    puzzle_grid = [
+        ["B", "I", "D", "G"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+    first_letter_coords = [(0,0)]
+    word = "BIG"
+
+
+    actual = __find_second_letter_matches(first_letter_coords, word, puzzle_grid)
+
+    assert actual is None
