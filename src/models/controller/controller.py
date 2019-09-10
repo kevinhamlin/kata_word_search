@@ -1,4 +1,5 @@
 from src.models.utilities.build_final_list_of_coords import build_final_list_of_coords
+from src.models.utilities.build_final_output_string import build_final_output_string
 from src.models.utilities.find_move_used import find_move_used
 from src.models.word_finder.word_finder import search_grid_for_all_instances_of_first_letter, \
     find_possible_second_letter_coords, search_surrounding_spaces_for_second_letter, search_remaining_letters_in_a_line
@@ -31,8 +32,15 @@ def get_move_used(matches, coord_to_check, word, puzzle_grid):
 def check_if_path_matches_rest_of_word(match, move_used, word, puzzle_grid, coord_to_check):
     result = search_remaining_letters_in_a_line(match, move_used, word, puzzle_grid)
     if result is not None:
-        create_list_of_found_word_coords(result, coord_to_check, match)
+        create_list_of_found_word_coords(result, coord_to_check, match, word)
 
 
-def create_list_of_found_word_coords(result, coord_to_check, match):
+def create_list_of_found_word_coords(result, coord_to_check, match, word):
     final_list_of_word_coords = build_final_list_of_coords(coord_to_check, match, result)
+    get_output_string(word, final_list_of_word_coords)
+
+
+def get_output_string(word, final_list_of_word_coords):
+    final_output_string = build_final_output_string(word, final_list_of_word_coords)
+    return final_output_string
+
