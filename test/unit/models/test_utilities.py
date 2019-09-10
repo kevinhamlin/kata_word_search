@@ -1,5 +1,6 @@
 from src.models.utilities.apply_move_to_coordinates import apply_move_to_coordinates
 from src.models.utilities.build_final_list_of_coords import build_final_list_of_coords
+from src.models.utilities.build_final_output_string import build_final_output_string
 from src.models.utilities.find_move_used import find_move_used
 from src.models.utilities.range_check import range_check
 
@@ -93,3 +94,12 @@ def test_build_final_list_of_coords__should_return_list_containing_all_coords_fo
     actual = build_final_list_of_coords(coord_to_check, match, result)
 
     assert actual == [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2)]
+
+
+def test_build_final_output_string__should_return_string_containing_word_and_associated_coords():
+    word = "GIVES"
+    final_list_of_word_coords = [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2)]
+
+    actual = build_final_output_string(word, final_list_of_word_coords)
+
+    assert actual == "GIVES: (0, 2), (1, 2), (2, 2), (3, 2), (4, 2)"
