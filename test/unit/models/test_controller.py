@@ -1,6 +1,6 @@
 from mock import patch
 
-from src.models.controller.controller import begin_search, find_second_letter_matches, get_matched_second_letter_coords, \
+from src.models.controller.controller import begin_search, __find_second_letter_matches, get_matched_second_letter_coords, \
     get_move_used, check_if_path_matches_rest_of_word, create_list_of_found_word_coords
 
 
@@ -12,8 +12,8 @@ def test_begin_search__should_call_search_grid_for_instance_of_first_letter_once
         ["A", "I", "I", "G"],
         ["G", "T", "X", "P"],
     ]
-
-    begin_search(words_to_find, puzzle_grid)
+    final_output_list = []
+    begin_search(words_to_find, puzzle_grid, final_output_list)
 
     assert mock_validate.call_count == 1
     mock_validate.assert_called_with(puzzle_grid, "B")
@@ -43,7 +43,7 @@ def test_find_second_letter_matches__should_call_find_possible_second_letter_coo
         ["G", "T", "X", "P"],
     ]
 
-    find_second_letter_matches(first_letter_coords, word, puzzle_grid)
+    __find_second_letter_matches(first_letter_coords, word, puzzle_grid)
 
     assert mock_validate.call_count == 1
     mock_validate.assert_called_with((0, 0))
@@ -96,8 +96,9 @@ def test_create_list_of_found_word_coords__should_call_build_list_of_coords_once
     coord_to_check = (0, 0)
     match = (0, 1)
     result = [(0, 2)]
+    word = "BIG"
 
-    create_list_of_found_word_coords(result, coord_to_check, match)
+    create_list_of_found_word_coords(result, coord_to_check, match, word)
 
     assert mock_validate.call_count == 1
     mock_validate.assert_called_with(coord_to_check, match, result)
