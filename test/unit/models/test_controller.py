@@ -144,3 +144,19 @@ def test___get_move_used__should_return_None_when_word_not_found():
     actual = __get_move_used(matches, coord_to_check, word, puzzle_grid)
 
     assert actual is None
+
+
+def test___check_if_path_matches_rest_of_word__should_return_None_when_word_not_found():
+    puzzle_grid = [
+        ["B", "I", "D", "G"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+    coord_to_check = (0, 0)
+    word = "BIG"
+    match = (0, 1)
+    move_used = (0, 1)
+
+    actual = __check_if_path_matches_rest_of_word(match, move_used, word, puzzle_grid, coord_to_check)
+
+    assert actual is None
