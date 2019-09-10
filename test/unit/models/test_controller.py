@@ -113,3 +113,19 @@ def test___find_second_letter_matches__should_return_None_when_word_not_found():
     actual = __find_second_letter_matches(first_letter_coords, word, puzzle_grid)
 
     assert actual is None
+
+
+def test__get_matched_second_letter_coords__should_return_None_when_word_not_found():
+    puzzle_grid = [
+        ["B", "I", "D", "G"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
+    coord_to_check = (0, 0)
+    word = "BIG"
+    letter = "I"
+    possible_moves = [(0, 1), (1, 1)]
+
+    actual = __get_matched_second_letter_coords(letter, possible_moves, puzzle_grid, coord_to_check, word)
+
+    assert actual is None
