@@ -1,4 +1,5 @@
 from src.models.utilities.apply_move_to_coordinates import apply_move_to_coordinates
+from src.models.utilities.build_final_list_of_coords import build_final_list_of_coords
 from src.models.utilities.find_move_used import find_move_used
 from src.models.utilities.range_check import range_check
 
@@ -82,3 +83,13 @@ def test_find_move_used__should_return_minus_one_minus_one_when_given_coords():
     actual = find_move_used(first_letter_coords, second_letter_coords)
 
     assert actual == (-1, -1)
+
+
+def test_build_final_list_of_coords__should_return_list_containing_all_coords_for_found_word():
+    coord_to_check = (0, 2)
+    match = (1, 2)
+    result = [(2, 2), (3, 2), (4, 2)]
+
+    actual = build_final_list_of_coords(coord_to_check, match, result)
+
+    assert actual == [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2)]
