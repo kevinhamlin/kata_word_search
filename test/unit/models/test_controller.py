@@ -1,7 +1,7 @@
 from mock import patch
 
 from src.models.controller.controller import begin_search, find_second_letter_matches, get_matched_second_letter_coords, \
-    get_move_used, check_if_path_matches_rest_of_word
+    get_move_used, check_if_path_matches_rest_of_word, create_list_of_found_word_coords
 
 
 @patch('src.models.controller.controller.search_grid_for_all_instances_of_first_letter')
@@ -90,3 +90,14 @@ def test_check_if_path_matches_rest_of_word__shoul_call_search_remaining_letters
 
     assert mock_validate.call_count == 1
     mock_validate.assert_called_with(match, move_used, word, puzzle_grid)
+
+@patch('src.models.controller.controller.build_final_list_of_coords')
+def test_create_list_of_found_word_coords__should_call_build_list_of_coords_once(mock_validate):
+    coord_to_check = (0, 0)
+    match = (0, 1)
+    result = [(0, 2)]
+
+    create_list_of_found_word_coords(result, coord_to_check, match)
+
+    assert mock_validate.call_count == 1
+    mock_validate.assert_called_with(coord_to_check, match, result)
