@@ -85,8 +85,9 @@ def test_check_if_path_matches_rest_of_word__shoul_call_search_remaining_letters
     match = (0, 1)
     move_used = (0, 1)
     word = "BIG"
+    coord_to_check = (0, 0)
 
-    check_if_path_matches_rest_of_word(match, move_used, word, puzzle_grid)
+    check_if_path_matches_rest_of_word(match, move_used, word, puzzle_grid, coord_to_check)
 
     assert mock_validate.call_count == 1
     mock_validate.assert_called_with(match, move_used, word, puzzle_grid)
