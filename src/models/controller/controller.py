@@ -16,16 +16,17 @@ def begin_search(words_to_find, puzzle_grid, final_output_list):
 
 
 def __find_second_letter_matches(first_letter_coords, word, puzzle_grid):
+    second_letter = word[1]
     for coord_to_check in first_letter_coords:
         possible_moves = find_possible_second_letter_coords(coord_to_check)
-        final_output_string = __get_matched_second_letter_coords(word[1], possible_moves, puzzle_grid, coord_to_check, word)
+        final_output_string = __get_matched_second_letter_coords(second_letter, possible_moves, puzzle_grid, coord_to_check, word)
         if final_output_string is not None:
             return final_output_string
     return None
 
 
-def __get_matched_second_letter_coords(letter, possible_moves, puzzle_grid, coord_to_check, word):
-    matches = search_surrounding_spaces_for_second_letter(letter, possible_moves, puzzle_grid)
+def __get_matched_second_letter_coords(second_letter, possible_moves, puzzle_grid, coord_to_check, word):
+    matches = search_surrounding_spaces_for_second_letter(second_letter, possible_moves, puzzle_grid)
     final_output_string = __get_move_used(matches, coord_to_check, word, puzzle_grid)
     if final_output_string is not None:
         return final_output_string
