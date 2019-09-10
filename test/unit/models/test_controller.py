@@ -64,15 +64,21 @@ def test_get_matched_second_letter_coords__should_call_search_surrounding_spaces
     assert mock_validate.call_count == 1
     mock_validate.assert_called_with(letter, possible_moves, puzzle_grid)
 
-
+@patch('src.models.controller.controller.check_if_path_matches_rest_of_word')
 @patch('src.models.controller.controller.find_move_used')
-def test_get_move_used__should_call_find_move_used_twice(mock_validate):
+def test_get_move_used__should_call_find_move_used_once(mock_validate, mock_check):
     matches = [(0, 1), (1, 1)]
     coord_to_check = (0, 0)
+    word = "BIG"
+    puzzle_grid = [
+        ["B", "I", "G", "D"],
+        ["A", "I", "I", "G"],
+        ["G", "T", "X", "P"],
+    ]
 
-    get_move_used(matches, coord_to_check)
+    get_move_used(matches, coord_to_check, word, puzzle_grid)
 
-    assert mock_validate.call_count == 2
+    assert mock_validate.call_count == 1
 
 
 @patch('src.models.controller.controller.search_remaining_letters_in_a_line')
