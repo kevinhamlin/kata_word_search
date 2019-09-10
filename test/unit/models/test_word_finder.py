@@ -312,11 +312,12 @@ def test_compare_remaining_letters__match_should_return_false_when_letters_do_no
     temp_y = 2
     word = "BIRD"
 
-    letter_index, match = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
+    letter_index, match, remaining_coords = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
 
 
     assert match is False
     assert letter_index == 2
+    assert remaining_coords == []
 
 
 def test_compare_remaining_letters__match_should_return_true_when_letters_match():
@@ -332,11 +333,12 @@ def test_compare_remaining_letters__match_should_return_true_when_letters_match(
     temp_y = 2
     word = "BIRD"
 
-    letter_index, match = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
+    letter_index, match, remaining_coords = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
 
 
     assert match is True
     assert letter_index == 3
+    assert remaining_coords == [(0, 2)]
 
 
 def test_compare_remaining_letters__should_handle_case_mismatch_and_return_true_with_increased_letter_index():
@@ -352,9 +354,9 @@ def test_compare_remaining_letters__should_handle_case_mismatch_and_return_true_
     temp_y = 2
     word = "BIrD"
 
-    letter_index, match = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
-
+    letter_index, match, remaining_coords = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
 
     assert match is True
     assert letter_index == 3
+    assert remaining_coords == [(0, 2)]
 
