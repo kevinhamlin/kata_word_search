@@ -2,6 +2,7 @@ from src.models.utilities.moves_to_search_surrounding_characters import moves
 from src.models.utilities.apply_move_to_coordinates import apply_move_to_coordinates
 from src.models.utilities.range_check import range_check
 
+
 def search_grid_for_all_instances_of_first_letter(grid, letter):
     first_letter_coords = []
     for x, row in enumerate(grid):
@@ -39,7 +40,7 @@ def search_remaining_letters_in_a_line(matched_coord, move_used, word, grid):
     temp_x, temp_y = matched_coord
     while letter_index < len(word) and match:
         temp_x, temp_y = apply_move_to_coordinates(temp_x, temp_y, move_used)
-        letter_index, match = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
+        letter_index, match, remaining_coords = compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_x, temp_y, word)
     if match:
         return remaining_coords
     else:
@@ -55,6 +56,6 @@ def compare_remaining_letters(grid, letter_index, match, remaining_coords, temp_
             match = False
     else:
         match = False
-    return letter_index, match
+    return letter_index, match, remaining_coords
 
 
