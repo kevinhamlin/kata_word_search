@@ -76,7 +76,7 @@ def test_get_move_used__should_call_find_move_used_twice(mock_validate):
 
 
 @patch('src.models.controller.controller.search_remaining_letters_in_a_line')
-def test_check_if_path_matches_rest_of_word(mock_validate):
+def test_check_if_path_matches_rest_of_word__shoul_call_search_remaining_letters_in_a_line_once(mock_validate):
     puzzle_grid = [
         ["B", "I", "G", "D"],
         ["A", "I", "I", "G"],
